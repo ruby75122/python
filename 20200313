@@ -1,0 +1,85 @@
+#
+```
+Chapter 3：用序列表示單變數資料
+3.1 設定pandas
+3.2 建立序列
+3.3 .index及.values屬性
+3.4 序列的大小及形狀
+3.5 在序列建立時指定索引
+3.6 頭、尾、選取
+3.7 以索引標籤或位置提取序列值
+3.8 把序列切割成子集合
+3.9 利用索引標籤實現對齊
+3.10 執行布林選擇
+3.11 將序列重新索引
+3.12 原地修改序列
+3.13 小結
+
+Chapter 4：用資料框表示表格及多變數資料
+4.1 設定pandas
+4.2 建立資料框物件
+4.3 存取資料框的資料
+4.4 利用布林選擇選取列
+4.5 跨越行與列進行選取
+4.6 小結
+```
+##Chapter 3：用序列表示單變數資料
+
+### 3.1 設定pandas==>pd.set_option
+
+```
+# import numpy and pandas
+import numpy as np
+import pandas as pd
+
+# used for dates
+import datetime
+from datetime import datetime, date
+
+# Set some pandas options controlling output format
+pd.set_option('display.notebook_repr_html', False)
+pd.set_option('display.max_columns', 8)
+pd.set_option('display.max_rows', 10)
+pd.set_option('display.width', 80)
+
+# bring in matplotlib for graphics
+import matplotlib.pyplot as plt
+%matplotlib inline
+```
+
+### 3.2 建立序列==>pd.Series()
+
+```
+# create a four item Series
+
+s = pd.Series([1, 2, 3, 4])
+s
+```
+
+```
+pandas.Series
+class pandas.Series(data=None, index=None, dtype=None, name=None, copy=False, fastpath=False)
+
+https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html
+```
+
+### 3.3 .index及.values屬性
+```
+# get value at label 1
+s[5]
+```
+```
+# return a Series with the row with labels 1 and 3
+s[[1, 3]]
+```
+```
+3.4 序列的大小及形狀
+3.5 在序列建立時指定索引
+3.6 頭、尾、選取
+3.7 以索引標籤或位置提取序列值
+3.8 把序列切割成子集合
+3.9 利用索引標籤實現對齊
+3.10 執行布林選擇
+3.11 將序列重新索引
+3.12 原地修改序列
+```
