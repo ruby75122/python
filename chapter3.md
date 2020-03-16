@@ -282,7 +282,9 @@ dtype: int64
 ```
 ### arange()函数
 ```
-函數說明：arange([start,] stop[, step,], dtype=None)根據start與stop指定的範圍以及step設定的步長，生成一個 ndarray。 dtype : dtype The type of the output array.  If `dtype` is not given, infer the data type from the other input arguments.
+函數說明：arange([start,] stop[, step,], dtype=None)根據start與stop指定的範圍以及step設定的步長，生成一個 ndarray。
+dtype : dtype The type of the output array.  
+If `dtype` is not given, infer the data type from the other input arguments.
 ```
 ```
 # 0 through 9
