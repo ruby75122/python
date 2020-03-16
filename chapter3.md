@@ -279,6 +279,12 @@ pd.Series(np.arange(4, 9))
 3    7
 4    8
 dtype: int64
+```
+### arange()函数
+函數說明：arange([start,] stop[, step,], dtype=None)根據start與stop指定的範圍以及step設定的步長，生成一個 ndarray。 dtype : dtype
+        The type of the output array.  If `dtype` is not given, infer the data
+        type from the other input arguments.
+```
 
 # 0 through 9
 pd.Series(np.linspace(0, 9, 5))
@@ -290,7 +296,12 @@ pd.Series(np.linspace(0, 9, 5))
 3    6.75
 4    9.00
 dtype: float64
-
+```
+### numpy中linspace用法
+```
+linspace的功能最初是從MATLAB中學來的，用此來創建等差數列。近期用Python的時候發現也有這個功能，提供相應功能的是numpy。
+```
+```
 # random numbers
 np.random.seed(12345) # always generate the same values
 # 5 normally random numbers
