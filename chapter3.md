@@ -342,12 +342,13 @@ dtype: int64
 
 ### 3.3 .index及.values屬性
 ```
-# get the values in the Series
-s = pd.Series([1, 2, 3])
-s.values
+# what is one day from 2014-11-30?
+today = datetime(2014, 11, 30)
+tomorrow = today + pd.Timedelta(days=1)
+tomorrow
 
 結果:
-array([1, 2, 3])
+datetime.datetime(2014, 12, 1, 0, 0)
 
 # show that this is a numpy array
 type(s.values)
