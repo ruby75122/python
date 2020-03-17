@@ -195,6 +195,7 @@ sp500.columns
 Index(['Sector', 'Price', 'Book Value'], dtype='object')
 ```
 ### 4.3 存取資料框的資料
+### 4.3.1選擇資料框的行
 ```
 # retrieve the Sector column
 sp500['Sector'].head()
@@ -249,8 +250,175 @@ ZION     28.43
 ZTS      30.53
 Name: Price, Length: 500, dtype: float64
 ```
+### 4.3.2選取資料框的列
 ```
-4.4 利用布林選擇選取列
-4.5 跨越行與列進行選取
-4.6 小結
+# get row with label MMM
+# returned as a Series
+sp500.loc['MMM']
+
+結果:
+Sector        Industrials
+Price              141.14
+Book Value         26.668
+Name: MMM, dtype: object
+
+# rows with label MMM and MSFT
+# this is a DataFrame result
+sp500.loc[['MMM', 'MSFT']]
+
+結果:
+                        Sector   Price  Book Value
+Symbol                                            
+MMM                Industrials  141.14      26.668
+MSFT    Information Technology   40.12      10.584
+
+# get rows in location 0 and 2
+sp500.iloc[[0, 2]]
+
+結果:
+             Sector   Price  Book Value
+Symbol                                 
+MMM     Industrials  141.14      26.668
+ABBV    Health Care   53.95       2.954
+
+# get the location of MMM and A in the index
+i1 = sp500.index.get_loc('MMM')
+i2 = sp500.index.get_loc('A')
+(i1, i2)
+
+結果:
+(0, 10)
+
+# and get the rows
+sp500.iloc[[i1, i2]]
+
+結果:
+             Sector   Price  Book Value
+Symbol                                 
+MMM     Industrials  141.14      26.668
+A       Health Care   56.18      16.928
+```
+### 4.3.3利用.at[]及.iat[]，以標籤或位置進行純量查詢
+```
+# by label in both the index and column
+sp500.at['MMM', 'Price']
+
+結果:
+141.13999999999999
+
+# by location.  Row 0, column 1
+sp500.iat[0, 1]
+
+結果:
+141.13999999999999
+```
+### 4.3.4使用[]運算子切割
+```
+# first five rows
+sp500[:5]
+
+結果:
+                        Sector   Price  Book Value
+Symbol                                            
+MMM                Industrials  141.14      26.668
+ABT                Health Care   39.60      15.573
+ABBV               Health Care   53.95       2.954
+ACN     Information Technology   79.79       8.326
+ACE                 Financials  102.91      86.897
+
+# ABT through ACN labels
+sp500['ABT':'ACN']
+
+結果:
+                        Sector  Price  Book Value
+Symbol                                           
+ABT                Health Care  39.60      15.573
+ABBV               Health Care  53.95       2.954
+ACN     Information Technology  79.79       8.326
+```
+### 4.4 利用布林選擇選取列
+```
+# what rows have a price < 100?
+sp500.Price < 100
+
+結果:
+Symbol
+MMM     False
+ABT      True
+ABBV     True
+ACN      True
+ACE     False
+        ...  
+YHOO     True
+YUM      True
+ZMH     False
+ZION     True
+ZTS      True
+Name: Price, Length: 500, dtype: bool
+
+# now get the rows with Price < 100
+sp500[sp500.Price < 100]
+
+結果:
+                        Sector  Price  Book Value
+Symbol                                           
+ABT                Health Care  39.60      15.573
+ABBV               Health Care  53.95       2.954
+ACN     Information Technology  79.79       8.326
+ADBE    Information Technology  64.30      13.262
+AES                  Utilities  13.61       5.781
+...                        ...    ...         ...
+XYL                Industrials  38.42      12.127
+YHOO    Information Technology  35.02      12.768
+YUM     Consumer Discretionary  74.77       5.147
+ZION                Financials  28.43      30.191
+ZTS                Health Care  30.53       2.150
+
+[407 rows x 3 columns]
+
+# get only the Price where Price is < 10 and > 0
+r = sp500[(sp500.Price < 10) & 
+          (sp500.Price > 6)] ['Price']
+r
+
+結果:
+Symbol
+HCBK    9.80
+HBAN    9.10
+SLM     8.82
+WIN     9.38
+Name: Price, dtype: float64
+
+# price > 100 and in the Health Care Sector
+r = sp500[(sp500.Sector == 'Health Care') & 
+          (sp500.Price > 100.00)] [['Price', 'Sector']]
+r
+
+結果:
+         Price       Sector
+Symbol                     
+ACT     213.77  Health Care
+ALXN    162.30  Health Care
+AGN     166.92  Health Care
+AMGN    114.33  Health Care
+BCR     146.62  Health Care
+...        ...          ...
+REGN    297.77  Health Care
+TMO     115.74  Health Care
+WAT     100.54  Health Care
+WLP     108.82  Health Care
+ZMH     101.84  Health Care
+
+[19 rows x 2 columns]
+```
+### 4.5 跨越行與列進行選取
+```
+# select the price and sector columns for ABT and ZTS
+sp500.loc[['ABT', 'ZTS']][['Sector', 'Price']]
+
+結果:
+             Sector  Price
+Symbol                    
+ABT     Health Care  39.60
+ZTS     Health Care  30.53
 ```
