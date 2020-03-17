@@ -341,6 +341,17 @@ dtype: int64
 ```
 
 ### 3.3 .index及.values屬性
+### Python 字典(Dictionary) values()方法
+```
+描述
+Python 字典(Dictionary) values() 函数以列表返回字典中的所有值。
+
+语法
+dict.values()
+
+参数
+NA。
+```
 ```
 # what is one day from 2014-11-30?
 today = datetime(2014, 11, 30)
