@@ -360,7 +360,34 @@ tomorrow
 
 結果:
 datetime.datetime(2014, 12, 1, 0, 0)
+```
+### timedelta 类对象
+```
+timedelta 对象表示两个 date 或者 time 的时间间隔。
 
+class datetime.timedelta(days=0, seconds=0, microseconds=0, milliseconds=0, minutes=0, hours=0, weeks=0)
+所有参数都是可选的并且默认为 0。 这些参数可以是整数或者浮点数，也可以是正数或者负数。
+
+只有 days, seconds 和 microseconds 会存储在内部。 参数单位的换算规则如下：
+
+1毫秒会转换成1000微秒。
+
+1分钟会转换成60秒。
+
+1小时会转换成3600秒。
+
+1星期会转换成7天。
+
+并且 days, seconds, microseconds 会经标准化处理以保证表达方式的唯一性，即：
+
+0 <= microseconds < 1000000
+
+0 <= seconds < 3600*24 (一天的秒数)
+
+-999999999 <= days <= 999999999
+```
+
+```
 # show that this is a numpy array
 type(s.values)
 
